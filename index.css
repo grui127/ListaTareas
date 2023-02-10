@@ -1,0 +1,77 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.container{
+    margin: auto;
+    width: 100%;
+    max-width: 900px;
+    height: 100vh;
+    background-color: #fcf8d7;
+    border: 1px solid #000;
+    border-radius: 2px;
+}
+header{
+    display: flex;
+    width: 100%;
+}
+header h1{display: inline-block;;
+    text-align: center;
+    font-size: 25px;
+    width: 90%;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 107);
+    border-bottom: 2px solid #000;
+}
+.mod{
+    width: 10%;
+    background-color: rgba(0, 45, 157, 0.696);
+}
+
+form{
+    margin: 20px auto 10px;
+    display: flex;
+    width: 80%;
+}
+#input{
+    width: 80%;
+}
+.agregar{
+    width: 20%  ;
+}
+
+.lista{
+    all: unset;
+    margin: 0px auto;
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+}
+.pendiente{
+    display: flex;
+    background-color: rgb(160, 160, 244);
+    margin: 3px 0;
+}
+.pendiente p{
+    text-align: center;
+    width: 80%;
+    font-size: 18px;
+    font-weight: 600;
+}
+.pendiente div{
+    display: flex;
+    gap: 5px;
+    min-width: 100px;
+    align-items: center;
+    justify-content: center;
+
+}
+.pendiente div button{
+    all: unset;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(195, 195, 242);
+}   
