@@ -82,6 +82,7 @@ function eliminar(i){
 
     let tareas = JSON.parse(localStorage.getItem("Tareas"));
     lista.innerHTML= ``
+    if(tareas !== null){
     for(let i = 0; tareas.length >i;i++){
         lista.innerHTML += `
         <div class="pendiente"id="${i}">
@@ -92,7 +93,7 @@ function eliminar(i){
         </div>
         </div>
     `;
-};
+    }}
 })()
 
 d.addEventListener("submit",(e)=> e.target === form ? agregar(e) : actualizar(e))
