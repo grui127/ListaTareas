@@ -1,6 +1,29 @@
 const d = document;
 const form = d.getElementById("form")
 const lista = d.querySelector(".lista")
+let mod = d.querySelector(".mod")
+let oscuridad = false;
+let root = d.querySelector(":root")
+
+function darkMod(e){
+    if(oscuridad){
+        root.style.setProperty("--font-color","#efefef")
+        root.style.setProperty("--bg-color","#220258d3")
+        root.style.setProperty("--bg-list","#08508bcb")
+        root.style.setProperty("--mod-color","#ffed86")
+        root.style.setProperty("--bg-cont","#606060be")
+        mod.innerHTML = "☀️"
+    }
+    else{
+        root.style.setProperty("--font-color","#232323")
+        root.style.setProperty("--bg-color","#e6e60029")
+        root.style.setProperty("--bg-list","#67bbffcb")
+        root.style.setProperty("--mod-color","#1100ac")
+        root.style.setProperty("--bg-cont","#d4c8ffbe")
+        mod.innerHTML = "🌙"
+    }
+}
+darkMod()
 
 function agregar(e){
     let texto = d.getElementById("input").value
@@ -24,7 +47,7 @@ function editar(index){
     let pendiente = d.getElementById(index)
     pendiente.innerHTML = `
     <form id="rename" class="${index}">
-        <input type="text" placeholder="su tarea pendiente" id="input2">
+        <input type="text" placeholder="Editando Tarea" id="input2" required>
         <input type="submit" value="Editar" class="agregar">
     </form>
     `
@@ -50,6 +73,13 @@ function eliminar(i){
 
 // muestra los datos
 (()=>{
+    if(localStorage.getItem("modo") === null){
+        localStorage.setItem("modo",oscuridad)
+    }
+    if(localStorage.getItem("modo") !== null){
+        oscuridad = localStorage.getItem("modo")
+    }
+
     let tareas = JSON.parse(localStorage.getItem("Tareas"));
     lista.innerHTML= ``
     for(let i = 0; tareas.length >i;i++){
@@ -57,17 +87,25 @@ function eliminar(i){
         <div class="pendiente"id="${i}">
         <p >${tareas[i]}</p>
         <div>
-            <button onclick="editar(${i})">🖊️</button>
-            <button onclick="eliminar(${i})">🗑️</button>
-            <button>↕️</button>
+            <button onclick="editar(${i})" class="btn-editar" title="editar">🖊️</button>
+            <button onclick="eliminar(${i})" class="btn-borrar" title="eliminar">🗑️</button>
         </div>
         </div>
-    `};
+    `;
+};
 })()
 
-
-
 d.addEventListener("submit",(e)=> e.target === form ? agregar(e) : actualizar(e))
+mod.addEventListener("click",(e)=>{
+    darkMod()
+    console.log(oscuridad)
+    localStorage.setItem("modo",!oscuridad)
+    return oscuridad = !oscuridad
+})
+
+
+
+
 
 
 

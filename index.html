@@ -9,18 +9,18 @@
 </head>
 <body>
     <div class="container">
-            <header>
+        <header>
                 <h1>Lista de Pendientes</h1>
                 <button class="mod">🌙</button>
-            </header> 
+        </header> 
         <form id="form">
-            <input type="text" placeholder="su tarea pendiente" id="input">
-            <input type="submit" value="Agregar" class="agregar">
+            <input type="text" placeholder="Nueva Tarea..." id="input" required tabindex="1">
+            <input type="submit" value="Añadir" class="agregar">
         </form>
         <div class="lista">
-
         </div>
     </div>
+    <p class="aclaracion">Las listas creadas se guardan en el navegador para mayor comodidad</p>
     <script src="index.js"></script>
 </body>
 </html>
