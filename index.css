@@ -1,11 +1,10 @@
 :root{
-    --font-color:#efefef;
-    --bg-color: #220258d3;
-    --bg-list: #08508bcb;
-    --mod-color: #ffed86;
-    --bg-cont:#606060be;
+    --font-color:#232323;
+    --bg-color: #e6e60029;
+    --bg-list: #67bbffcb;
+    --mod-color: #1100ac;
+    --bg-cont:#d4c8ffbe; 
 }
-
 body{
     margin: 0;
     padding: 0;

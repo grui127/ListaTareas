@@ -1,29 +1,11 @@
+'use strict'
+
 const d = document;
 const form = d.getElementById("form")
 const lista = d.querySelector(".lista")
 let mod = d.querySelector(".mod")
-let oscuridad = false;
+let oscuridad = localStorage.getItem("modo") || false;
 let root = d.querySelector(":root")
-
-function darkMod(e){
-    if(oscuridad){
-        root.style.setProperty("--font-color","#efefef")
-        root.style.setProperty("--bg-color","#220258d3")
-        root.style.setProperty("--bg-list","#08508bcb")
-        root.style.setProperty("--mod-color","#ffed86")
-        root.style.setProperty("--bg-cont","#606060be")
-        mod.innerHTML = "☀️"
-    }
-    else{
-        root.style.setProperty("--font-color","#232323")
-        root.style.setProperty("--bg-color","#e6e60029")
-        root.style.setProperty("--bg-list","#67bbffcb")
-        root.style.setProperty("--mod-color","#1100ac")
-        root.style.setProperty("--bg-cont","#d4c8ffbe")
-        mod.innerHTML = "🌙"
-    }
-}
-darkMod()
 
 function agregar(e){
     let texto = d.getElementById("input").value
@@ -70,16 +52,33 @@ function eliminar(i){
     localStorage.setItem("Tareas",JSON.stringify(tareas))
     location.reload()
 }
-
-// muestra los datos
-(()=>{
+function darkMod(){
     if(localStorage.getItem("modo") === null){
         localStorage.setItem("modo",oscuridad)
     }
-    if(localStorage.getItem("modo") !== null){
-        oscuridad = localStorage.getItem("modo")
+    if(oscuridad == true || oscuridad == "true"){
+        root.style.setProperty("--font-color","#efefef")
+        root.style.setProperty("--bg-color","#220258d3")
+        root.style.setProperty("--bg-list","#08508bcb")
+        root.style.setProperty("--mod-color","#ffed86")
+        root.style.setProperty("--bg-cont","#606060be")
+        mod.innerHTML = "☀️"
     }
+    else if(oscuridad == false || oscuridad == "false"){
+        root.style.setProperty("--font-color","#232323")
+        root.style.setProperty("--bg-color","#e6e60029")
+        root.style.setProperty("--bg-list","#67bbffcb")
+        root.style.setProperty("--mod-color","#1100ac")
+        root.style.setProperty("--bg-cont","#d4c8ffbe")
+        mod.innerHTML = "🌙"
+    }
+    else{
+        console.log("ya me canse de este puto bug")
+    }
+}
 
+// muestra los datos
+(()=>{ 
     let tareas = JSON.parse(localStorage.getItem("Tareas"));
     lista.innerHTML= ``
     if(tareas !== null){
@@ -96,13 +95,14 @@ function eliminar(i){
     }}
 })()
 
+darkMod()
+
 d.addEventListener("submit",(e)=> e.target === form ? agregar(e) : actualizar(e))
-mod.addEventListener("click",(e)=>{
+mod.addEventListener("click",()=>{
+    oscuridad = !oscuridad
     darkMod()
-    console.log(oscuridad)
-    localStorage.setItem("modo",!oscuridad)
-    return oscuridad = !oscuridad
-})
+    localStorage.setItem("modo",oscuridad)
+    return oscuridad})
 
 
 
