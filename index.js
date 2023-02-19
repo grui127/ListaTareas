@@ -73,7 +73,7 @@ function darkMod(){
         mod.innerHTML = "🌙"
     }
     else{
-        console.log("ya me canse de este puto bug")
+        console.log("perdon se me safo algo T-T")
     }
 }
 
